@@ -67,7 +67,7 @@ begin
   except
     on E: Exception do
     begin
-      // При записи лога не показывать ошибку
+      // РџСЂРё Р·Р°РїРёСЃРё Р»РѕРіР° РЅРµ РїРѕРєР°Р·С‹РІР°С‚СЊ РѕС€РёР±РєСѓ
     end;
   end;
 end;
@@ -80,7 +80,7 @@ function TMyThread.IsPrimeNumber: boolean;
 var
   iter: integer;
 begin
-  //Определяем простое ли это число
+  //РћРїСЂРµРґРµР»СЏРµРј РїСЂРѕСЃС‚РѕРµ Р»Рё СЌС‚Рѕ С‡РёСЃР»Рѕ
 
   result := true;
   if FLastNumber < 2 then
@@ -105,7 +105,7 @@ end;
 constructor TMyThread.Create(MaxCount: Int64; TermProc: TNotifyEvent;
   Presentation: boolean);
 begin
-  //Создание потока
+  //РЎРѕР·РґР°РЅРёРµ РїРѕС‚РѕРєР°
   inherited Create(true);
 
   InterlockedIncrement(StartedThread);
@@ -119,13 +119,13 @@ end;
 
 procedure TMyThread.GetLast;
 begin
-  //Получаем последний проверенный
+  //РџРѕР»СѓС‡Р°РµРј РїРѕСЃР»РµРґРЅРёР№ РїСЂРѕРІРµСЂРµРЅРЅС‹Р№
   FLastNumber := LastDig;
 end;
 
 procedure TMyThread.SaveResult;
 begin
-  //Сохраним, если нам всё нравится
+  //РЎРѕС…СЂР°РЅРёРј, РµСЃР»Рё РЅР°Рј РІСЃС‘ РЅСЂР°РІРёС‚СЃСЏ
   if FResult > LastDig then
   begin
     LastDig := FResult;
@@ -134,14 +134,14 @@ begin
     WriteStringToTextFile('Result.txt', IntToStr(FResult) + ' ');
   end;
 
-  //Опциональное замедление
+  //РћРїС†РёРѕРЅР°Р»СЊРЅРѕРµ Р·Р°РјРµРґР»РµРЅРёРµ
   if FPresentation then
     sleep(Random(201));
 end;
 
 procedure TMyThread.Execute;
 begin
-  //Работаем
+  //Р Р°Р±РѕС‚Р°РµРј
 
   Synchronize(GetLast);
 
@@ -160,11 +160,11 @@ end;
 
 procedure TForm1.ThreadTerm(Sender: TObject);
 begin
-  //И раз-два, закончили
+  //Р СЂР°Р·-РґРІР°, Р·Р°РєРѕРЅС‡РёР»Рё
   InterlockedDecrement(StartedThread);
 
   if StartedThread = 0 then
-    MessageDlg('Готово!', TMsgDlgType.mtInformation, [mbOk], 0);
+    MessageDlg('Р“РѕС‚РѕРІРѕ!', TMsgDlgType.mtInformation, [mbOk], 0);
 end;
 
 procedure TForm1.btnGoClick(Sender: TObject);
