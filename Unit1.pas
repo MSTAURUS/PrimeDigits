@@ -110,7 +110,7 @@ begin
 
   InterlockedIncrement(StartedThread);
 
-  Name := 'Thread_' + IntToStr(StartedThread);
+  Name := 'Thread' + IntToStr(StartedThread);
   FMaxCount := MaxCount;
   FreeOnTerminate := true;
   OnTerminate := TermProc;
